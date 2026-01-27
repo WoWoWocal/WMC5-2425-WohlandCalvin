@@ -1,1 +1,80 @@
+# Zusammenfassung: *What is HTTP? Protocol Overview for Beginners* (freeCodeCamp)
+
+Quelle: https://www.freecodecamp.org/news/what-is-http/
+
+## Kernaussage
+HTTP (**Hypertext Transfer Protocol**) ist das grundlegende Protokoll, das den Datenaustausch im Web ermöglicht. Es sorgt dafür, dass Clients (z. B. Browser oder Apps) und Server miteinander kommunizieren können – und bildet damit das Fundament der heutigen Web-Nutzung.
+
+## Was man laut Artikel zusätzlich können sollte
+Um HTTP gut zu verstehen, hilft Vorwissen zu:
+- **Networking** (z. B. IP-Adressen, DNS, Routing)
+- **Web-Architektur** (HTML, CSS, JavaScript)
+- **Server-side Development** (wie Server arbeiten, wie APIs bereitgestellt werden)
+- **Client-side Development** (wie Clients Requests auslösen und Responses verarbeiten)
+
+## Der HTTP Request–Response Cycle
+Der Artikel erklärt HTTP als wiederkehrenden Ablauf:
+1. **Client sendet Request** (fragt Ressource an oder löst Aktion aus)
+2. **Server verarbeitet Request**
+3. **Server sendet Response** (Daten + Metainformationen)
+4. **Client verarbeitet Response** (z. B. Rendern im Browser)
+5. Weitere Requests folgen nach Bedarf
+
+Wichtig ist: Kommunikation passiert in klar getrennten Nachrichten (Request/Response).
+
+## Woraus besteht ein HTTP-Request?
+Damit ein Request „vollständig“ ist, braucht man typischerweise:
+- **URL** (wo liegt die Ressource?)
+- **Methode** (welche Aktion soll passieren?)
+- **Headers** (Kontext/Anweisungen)
+- **Body** (optional: Daten, die gesendet werden)
+
+### URL und „Ressourcen“
+Eine URL zeigt auf eine **Ressource** (der Artikel beschreibt Ressourcen als „Nomen“ – etwa User, Produkte, Artikel, Dokumente oder Bilder). Der Client adressiert damit eindeutig, was er vom Server will.
+
+### Methoden (HTTP Verbs)
+Der Artikel stellt die gängigen Methoden und deren Zweck vor:
+- **HEAD**: Status/Metadaten einer Ressource (z. B. Größe/Verfügbarkeit) ohne Body
+- **GET**: Ressource abrufen
+- **POST**: neue Ressource erstellen / Daten hochladen
+- **PUT**: Ressource aktualisieren
+- **DELETE**: Ressource löschen
+
+### Request Headers
+Headers sind **Name/Value-Paare** und liefern Zusatzinfos, etwa:
+- **Host** (Ziel-Hostname)
+- **User-Agent** (Client-Infos)
+- **Accept / Accept-Language** (was der Client erwartet)
+- **Authorization** (Token/Auth)
+- **Cache-Control / Pragma** (Caching)
+- **Connection** (Verbindungsverhalten)
+- **Referer** (Herkunftsseite)
+- **Content-Type** (Format des Bodys, wenn vorhanden)
+
+## Request Body (Daten senden)
+Der Body enthält die **Nutzdaten**, die der Client mitsendet (z. B. beim Upload).
+Der Artikel zeigt dazu ein Beispiel mit **POST** und `multipart/form-data` (typisch für Datei-Uploads) inklusive Headers wie `Content-Type`, `Content-Length` und einem API-Key zur Authentifizierung.
+
+## HTTP-Response: Aufbau und Bedeutung
+Eine Response besteht typischerweise aus:
+- **Status Line** (HTTP-Version + Statuscode + Text)
+- **Response Headers** (Metadaten, z. B. Content-Type, Datum, Server)
+- **Body** (z. B. HTML, JSON oder XML)
+
+### Status Codes (Beispiele aus dem Artikel)
+Der Artikel nennt u. a.:
+- **100** Continue
+- **101** Switching Protocols
+- **200** OK
+- **201** Created
+- **202** Accepted
+- **203** Non-Authoritative Information
+- **301** Moved Permanently
+- **404** Not Found
+- **500** Internal Server Error
+
+Anhand eines JSON-Beispiels (Cat API) wird gezeigt, wie Responses strukturierte Daten als JSON zurückgeben können.
+
+## Fazit
+HTTP ist das zentrale Protokoll hinter nahezu allen Web-Architekturen (REST & Co.). Wer Webentwicklung macht, sollte den Request–Response-Ablauf, URLs/Ressourcen, Methoden, Headers, Bodys und Statuscodes sicher verstehen – und Requests/Responses mit Tools wie Browser-DevTools oder Postman untersuchen können.
 
