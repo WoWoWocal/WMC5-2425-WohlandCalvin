@@ -1,1 +1,39 @@
+# Zusammenfassung: *Javascript Nuggets – Promises* (YouTube, Coding Addict) – Playlist Index 16
+
+Link: https://www.youtube.com/watch?v=IBjmTlShf6U&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=16 citeturn6search1turn3search10
+
+> Hinweis: Ich konnte die YouTube-Seite in dieser Umgebung nicht zuverlässig laden (Fetch throttled).  
+> Die folgende Zusammenfassung basiert deshalb auf den öffentlich auffindbaren Metadaten (Titel/Playlist) und dem kurzen Inhaltsauszug, der in Suchergebnissen angezeigt wird. citeturn6search1turn3search10  
+> Wenn du mir das **Transkript** (oder die wichtigsten Stichpunkte) schickst, mache ich dir sofort eine **wirklich inhaltsgenaue** Zusammenfassung „Szene für Szene“.
+
+## Worum geht’s?
+Das Video erklärt **JavaScript Promises**: Ein Promise ist ein Objekt für **asynchrone** Vorgänge, das ein Ergebnis **in der Zukunft** liefert (oder einen Fehler). citeturn6search1
+
+## Zentrale Begriffe (typischer Promise-Kern)
+- **pending**: der asynchrone Vorgang läuft noch.
+- **fulfilled / resolved**: erfolgreich abgeschlossen, Ergebnis ist da.
+- **rejected**: fehlgeschlagen, es gibt einen Fehler/Reason.
+
+## Typische Nutzung in Code (Konzept)
+- Ein Promise kapselt z. B. einen Netzwerk-Call, ein Timeout, Dateizugriff usw.
+- Verarbeitung erfolgt über:
+  - `.then(...)` für Erfolg
+  - `.catch(...)` für Fehler
+  - `.finally(...)` für „immer ausführen“ (Cleanup)
+
+## Warum Promises wichtig sind
+- Sie strukturieren asynchronen Code sauberer als reine Callback-Ketten.
+- Sie sind Grundlage für moderne Patterns wie **async/await**.
+
+## Takeaways
+- Promises = „**Ergebnis später**“ (oder Fehler), aber schon jetzt als Objekt behandelbar.
+- Man denkt in **Zuständen** (pending → fulfilled/rejected) und **Ketten** (`then/catch`).
+
+---
+
+## Wenn du eine *echte* inhaltsgenaue Zusammenfassung willst
+Kopiere einfach das **YouTube-Transkript** hier rein (oder lade es als Text hoch). Dann schreibe ich dir:
+- eine präzise Kapitel-Zusammenfassung,
+- die wichtigsten Definitionen + Beispiele,
+- und eine Mini-„Spickzettel“-Sektion für die Prüfung/Übung.
 
