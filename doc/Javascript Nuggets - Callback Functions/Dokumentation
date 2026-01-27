@@ -1,1 +1,64 @@
+# Zusammenfassung: *Javascript Nuggets – Callback Functions* (YouTube)
+
+Video-Link: https://www.youtube.com/watch?v=GWq0XETTOTk&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=14 citeturn0search0turn0search1  
+Reihe/Playlist: **JavaScript Nuggets** (Coding Addict / John Smilga) citeturn0search1
+
+> **Hinweis (Transparenz):** In dieser Umgebung lässt sich der YouTube-Player nicht immer zuverlässig „abspielen“.  
+> Die Zusammenfassung orientiert sich daher an den **Video-Metadaten** und dem **Begleit-Repository** der Nuggets-Serie (Ordnerstruktur zeigt die Themenfolge). citeturn0search0turn0search1  
+> Wenn du mir das **Transkript** (Auto-Untertitel) einfügst, kann ich es anschließend noch genauer auf die konkreten Beispiele im Video zuschneiden.
+
+---
+
+## Worum geht es im Video?
+Das Video erklärt, was **Callback Functions** in JavaScript sind und warum sie besonders bei **asynchronem Code** (z. B. Timer, Netzwerk, Events) häufig verwendet werden.
+
+Ein Callback ist im Kern:
+> eine Funktion, die man **als Argument** an eine andere Funktion übergibt und **später** ausführt. citeturn0search0
+
+---
+
+## Kerngedanken (verständlich erklärt)
+
+### 1) Funktionen sind „First-Class Citizens“
+In JavaScript können Funktionen wie Werte behandelt werden:
+- in Variablen speichern,
+- als Argument übergeben,
+- als Rückgabewert zurückgeben.
+
+Das macht Callbacks möglich: Du übergibst „was später passieren soll“ als Funktion.
+
+### 2) Warum Callbacks gebraucht werden
+Callbacks lösen ein praktisches Problem:  
+Oft weißt du **noch nicht**, wann ein Ergebnis verfügbar ist (z. B. Daten laden, warten, User klickt).
+
+Statt zu blockieren, sagst du:
+- „Mach X, und **wenn du fertig bist**, ruf bitte diese Funktion auf.“
+
+Typische Situationen:
+- **Events** (Button-Klick, Input)
+- **Timers** (`setTimeout`, `setInterval`)
+- **Async I/O** (Fetch/AJAX, Dateien, Datenbanken)
+
+### 3) Synchronous vs. Asynchronous Callbacks
+- **Synchroner Callback:** wird sofort in der Funktion ausgeführt (z. B. `array.map(...)`)
+- **Asynchroner Callback:** wird erst später ausgeführt (z. B. `setTimeout(..., 1000)`)
+
+Beide heißen Callback – der Unterschied ist der Zeitpunkt.
+
+### 4) Vorteil: Flexibilität & Wiederverwendbarkeit
+Du kannst Funktionen generisch schreiben:
+- Die „Hauptfunktion“ erledigt die Standardarbeit
+- Der Callback bestimmt, **was am Ende** passieren soll (z. B. Logging, UI-Update, weitere Verarbeitung)
+
+### 5) Der Nachteil: Verschachtelung („Callback Hell“) als nächster Schritt
+Wenn viele asynchrone Schritte voneinander abhängen, werden Callbacks schnell verschachtelt.  
+Darum ist in der Nuggets-Reihe direkt danach typischerweise **„Callback Hell“** und dann **Promises/async-await** platziert. citeturn0search1
+
+---
+
+## Mini-Spickzettel
+- Callback = Funktion **als Argument**, später aufgerufen citeturn0search0  
+- Sync-Callback: sofort (z. B. `map`)  
+- Async-Callback: später (z. B. `setTimeout`, Events)  
+- Problem bei vielen Abhängigkeiten: **Callback Hell** → Lösung oft: **Promises** / **async-await** citeturn0search1
 
