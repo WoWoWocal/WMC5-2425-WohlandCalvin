@@ -1,1 +1,70 @@
+# Zusammenfassung: *Javascript Nuggets – Async / Await* (YouTube)
+
+Link: https://www.youtube.com/watch?v=iHrVo5fvmzE&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=18 citeturn0search0turn2search2  
+Begleitendes Code-Repo (Nuggets-Serie): `john-smilga/javascript-nuggets` (Ordner: `17-async-await`) citeturn2search1turn3view0
+
+> **Transparenz-Hinweis:** In dieser Umgebung lässt sich die YouTube-Seite/der Player nicht zuverlässig abrufen („Failed to fetch“). citeturn1view0  
+> Die folgende Zusammenfassung basiert daher auf dem **Videotitel/Playlist-Kontext** und dem **offiziellen Begleit-Repo**, das die Nuggets-Episoden strukturiert (u. a. `17-async-await`, danach `18-fetch`). citeturn2search1turn3view0turn2search2  
+> Wenn du mir das **YouTube-Transkript** (Auto-Transcript reicht) einfügst, kann ich das sofort zu einer **inhaltlich 1:1**-Zusammenfassung mit konkreten Code-Beispielen/Begriffen aus dem Video machen.
+
+---
+
+## Worum geht es in dieser Nugget-Folge?
+Das Video erklärt **`async`/`await`** in JavaScript als moderne, gut lesbare Schreibweise für asynchronen Code. In der Nuggets-Reihe folgt das Thema typischerweise nach **Callbacks → Callback-Hell → Promises → Promise-Example** und bereitet den Übergang zu **Fetch API** vor (die im Playlist-Umfeld direkt danach kommt). citeturn2search2turn2search1turn3view0
+
+---
+
+## Kernaussagen & Konzepte
+
+### 1) `async` macht aus einer Funktion „Promise-returning“
+- Eine Funktion mit `async` **liefert immer ein Promise zurück**:
+  - `return value` wird zu `Promise.resolve(value)`
+  - ein `throw` wird zu `Promise.reject(error)`
+- Dadurch kann die aufrufende Seite konsistent mit Promises arbeiten (`then/catch`) – oder ebenfalls `await` nutzen.
+
+### 2) `await` „wartet“ auf ein Promise – ohne Callback-Ketten
+- `await` kann nur **innerhalb einer `async`-Funktion** verwendet werden.
+- Es „pausiert“ den Ablauf **in dieser Funktion**, bis das Promise erfüllt/abgelehnt ist.
+- Ergebnis: Code wirkt **linear** („erst A, dann B“), obwohl darunter weiterhin Promises/Event-Loop arbeiten.
+
+### 3) Fehlerbehandlung: `try/catch` statt `.catch(...)`
+Ein zentraler Vorteil: Fehlerbehandlung wird oft klarer:
+- Promise-Style: `promise.then(...).catch(...)`
+- async/await-Style: `try { await ... } catch (err) { ... }`
+
+### 4) Sequenziell vs. parallel (Performance-Falle)
+Ein typisches Lernziel bei `await`:
+- Mehrere `await`s **nacheinander** können unnötig langsam sein.
+- Wenn Aufgaben unabhängig sind, ist paralleles Starten sinnvoll (z. B. über `Promise.all(...)`) und danach gemeinsames `await`.
+
+*(Ob das im Video im Detail gezeigt wird, hängt vom genauen Ablauf ab – im Kontext der Nuggets-Serie ist das jedoch ein klassischer Punkt.)*
+
+### 5) Mentales Modell: „Syntactic Sugar“ über Promises
+`async/await` ist kein neues Parallelitätsmodell, sondern eine **schönere Syntax**:
+- Der Code sieht synchron aus,
+- bleibt aber asynchron (non-blocking auf Thread-Ebene).
+
+---
+
+## Typische Beispiel-Idee (wie es in vielen Nuggets-Folgen vorkommt)
+Das Video demonstriert sehr wahrscheinlich ein kleines Setup wie:
+- eine Funktion, die ein Promise zurückgibt (z. B. „fetch data“, „setTimeout simulieren“, „resolve/reject“),
+- anschließend die Umstellung von `.then().catch()` auf `async function` + `await` + `try/catch`,
+- und ein kurzes Logging, um die Reihenfolge zu verstehen.
+
+---
+
+## Mini-Spickzettel
+- `async function f(){...}` → gibt **immer Promise** zurück  
+- `await p` → wartet auf Promise-Ergebnis (nur in `async`)  
+- Fehler: `try/catch` statt verschachtelter `.catch()`  
+- Achtung: viele `await`s hintereinander = oft **langsamer** als `Promise.all`
+
+---
+
+## Wenn du willst (für perfekte Genauigkeit)
+Schick mir das YouTube-Transkript oder 5–10 Stichpunkte aus dem Video – dann erstelle ich dir eine **wirklich „genau“-Zusammenfassung**, inklusive:
+- Abschnitt/Timeline-Punkte,
+- die konkreten Code-Snippets (in eigenen Worten, nicht 1:1 kopiert),
+- typische Prüfungsfragen + Antworten.
 
