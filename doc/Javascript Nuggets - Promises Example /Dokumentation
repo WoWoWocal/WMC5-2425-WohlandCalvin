@@ -1,1 +1,67 @@
+# Zusammenfassung: *Javascript Nuggets – Promises Example* (YouTube)
+
+Video-Link: https://www.youtube.com/watch?v=GKVA6jYrgKc&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=17 citeturn2search0turn4search7  
+Passendes Source-Code-Repo (Nuggets): `john-smilga/javascript-nuggets` citeturn4search0
+
+> **Hinweis zur Genauigkeit:** In dieser Umgebung lässt sich YouTube gelegentlich nicht zuverlässig laden (Fetch throttled).  
+> Ich stütze diese Zusammenfassung deshalb auf **Titel/Playlist-Metadaten** und die **zugehörige Source-Code-Struktur** im offiziellen Nuggets-Repo (insb. der Ordner „promises-example“). citeturn1view0turn4search0  
+> Wenn du mir zusätzlich das **YouTube-Transkript** schickst, kann ich es 1:1 inhaltlich (mit Kapitelpunkten) nachschärfen.
+
+---
+
+## Worum geht es im Video?
+Das Video ist ein **Praxisbeispiel** zu JavaScript-**Promises** – also dazu, wie man asynchronen Code (z. B. „erst später kommt ein Ergebnis“) sauber strukturiert, statt sich in verschachtelten Callbacks („Callback Hell“) zu verlieren. citeturn2search0turn4search7
+
+Im Kontext der Nuggets-Reihe folgt dieses Video typischerweise **nach**:
+- Callback-Funktionen
+- Callback Hell
+- Promises (Grundlagen)
+
+und **vor**:
+- Async/Await citeturn4search0turn4search7
+
+---
+
+## Kernideen, die das Beispiel vermitteln soll
+
+### 1) Promise als „Vertrag“ für ein späteres Ergebnis
+Ein Promise steht für einen Wert, der **später** verfügbar ist:
+- **pending** (läuft noch)
+- **fulfilled** (erfolgreich → Ergebnis)
+- **rejected** (fehlgeschlagen → Fehler)
+
+### 2) Promises machen Abläufe lesbar durch „Ketten“
+Statt tiefer Callback-Schachtelung wird in einer Kette gearbeitet:
+- `.then(...)` verarbeitet erfolgreiche Ergebnisse Schritt für Schritt
+- `.catch(...)` sammelt Fehlerbehandlung
+- optional `.finally(...)` für Cleanup/Abschluss
+
+Das Ziel: **linearer, nachvollziehbarer Ablauf** im Code.
+
+### 3) Fehlerbehandlung wird zentraler und stabiler
+Ein typischer Punkt im Promise-Example ist, dass Fehler **nicht** an jeder Stelle einzeln verklebt werden müssen, sondern:
+- gezielt an einer Stelle abgefangen werden können (`catch`)
+- oder bewusst weitergereicht werden („fail fast“)
+
+### 4) Brücke zu async/await
+Das Video dient als Sprungbrett: Wenn man Promise-Ketten verstanden hat, wirkt `async/await` wie „syntaktischer Zucker“ – also gleiche Logik, nur lesbarer.
+
+---
+
+## Typische Lernziele nach dem Video
+Nach dem „Promises Example“ solltest du können:
+- erkennen, wann ein Ablauf *asynchron* ist
+- ein Promise **erstellen** (mit `resolve/reject`) oder bestehende Promises **verwenden**
+- Promise-Ketten mit `.then/.catch` sauber strukturieren
+- Fehlerfälle sinnvoll behandeln, ohne „Spaghetti-Code“
+
+---
+
+## Mini-Spickzettel (ultrakurz)
+- Promise = Ergebnis später  
+- `then` = Erfolg  
+- `catch` = Fehler  
+- Ketten statt Callback-Schachteln  
+- Vorbereitung für `async/await`
+
 
