@@ -1,1 +1,372 @@
+# Node.js & Express.js
+
+> **Video:** *Node.js and Express.js – Full Course* (freeCodeCamp.org, entwickelt von John Smilga)  
+> **Kurslänge:** ca. 8 Stunden  
+> **Hinweis zur Grundlage:** Diese Zusammenfassung orientiert sich an der **öffentlich verfügbaren Kurs-Gliederung/Themenliste** und Kursbeschreibung. Quellen: freeCodeCamp-News-Post (Themenliste) und Class Central (Syllabus/Überblick).  
+
+---
+
+## 1) Worum geht’s in diesem Kurs?
+
+Der Kurs führt dich Schritt für Schritt in **Server‑Side JavaScript** mit **Node.js** ein und zeigt danach, wie du mit **Express.js** robuste Web‑Server und **REST‑APIs** baust.
+
+**Lernziele:**
+- Verstehen, was Node.js ist und warum es sich von Browser‑JavaScript unterscheidet.
+- Node-Grundlagen: Module, Core‑Module (OS, Path, FS, HTTP), NPM.
+- Wichtige Konzepte: **Event Loop**, asynchrones Programmieren, Events, Streams.
+- Web‑Basics: Request/Response‑Zyklus, HTTP‑Header, Request‑Objekt, statische Dateien.
+- Express: Routing, Middleware, Parameter/Query‑Strings, CRUD‑Methoden, Router & Controller.
+- API‑Testing mit Tools wie **Postman**.
+
+---
+
+## 2) Was ist Node.js?
+
+### 2.1 Definition
+**Node.js** ist eine Laufzeitumgebung, die JavaScript **außerhalb des Browsers** ausführt.  
+Du kannst damit z. B. Web‑Server bauen, Dateien lesen/schreiben, APIs bereitstellen oder CLIs erstellen.
+
+### 2.2 Browser vs. Server
+**Browser‑JavaScript**
+- Fokus: DOM, UI, Events im Frontend
+- APIs: `document`, `window`, Fetch/DOM‑Manipulation, …
+
+**Server‑JavaScript (Node)**
+- Fokus: Netzwerk, Dateien, Prozesse, Skalierung
+- APIs: File System, HTTP‑Server, Streams, Prozess‑Infos, …
+
+---
+
+## 3) Installation, REPL und CLI
+
+### 3.1 Node installieren
+Typisch: Installation von **Node.js** (inkl. `node` und `npm`). Danach:
+- `node -v` → Version prüfen  
+- `npm -v` → NPM Version prüfen
+
+### 3.2 Node REPL
+REPL = interaktive Konsole:
+- `node` starten → JS direkt ausführen
+- Praktisch zum schnellen Testen von Ausdrücken/Funktionen.
+
+### 3.3 CLI & Projektstruktur
+Viele Node-Projekte laufen über:
+- Ordner mit `package.json`
+- Startskript (z. B. `npm start`)
+- ggf. Dev‑Script (z. B. `npm run dev`)
+
+---
+
+## 4) Globale Objekte & Grundlagen
+
+Node stellt einige **Globals** bereit, z. B.:
+- `__dirname`, `__filename`
+- `process` (z. B. `process.env`, `process.argv`)
+- `module`, `require` (CommonJS)
+
+Typische Übung: globale Werte ausgeben, Pfade anzeigen, Prozessargumente auswerten.
+
+---
+
+## 5) Module: Code strukturieren
+
+### 5.1 Module Setup
+In Node wird Code häufig in Module aufgeteilt. Ein Modul kann Funktionen/Objekte exportieren.
+
+**CommonJS (klassisch):**
+- Export: `module.exports = ...` oder `exports.xyz = ...`
+- Import: `const xyz = require('./pfad')`
+
+### 5.2 Erstes Modul
+- Funktionen (z. B. `sayHi(name)`) in eigene Datei
+- In `app.js` importieren und aufrufen
+
+### 5.3 Alternative Syntax
+- Verschiedene Export‑Varianten (Default/Named im CommonJS‑Stil)
+- Du lernst typische Patterns aus realen Projekten.
+
+### 5.4 „Mind Grenade“-Prinzip
+Ein häufiger Node‑Lernmoment:  
+**Wenn du ein Modul importierst, wird sein Top‑Level‑Code sofort ausgeführt.**  
+Das ist wichtig, um Nebenwirkungen (Side Effects) zu verstehen.
+
+---
+
+## 6) Built‑in Modules (Core Modules)
+
+### 6.1 Überblick
+Node bringt viele Module direkt mit. Du musst sie nicht installieren.
+
+### 6.2 OS‑Modul
+Ziel: Systeminfos abfragen (z. B. Plattform, CPU, Speicher).
+
+### 6.3 Path‑Modul
+Ziel: **plattformunabhängige Pfade** bauen/verarbeiten:
+- `path.join(...)`
+- `path.resolve(...)`
+- `path.basename(...)`
+
+Warum wichtig? Unterschiedliche Pfadtrenner (Windows `\` vs. Linux `/`).
+
+### 6.4 FS‑Modul (Sync)
+Dateien synchron lesen/schreiben (blockiert den Thread):
+- gut für kurze Skripte, schlecht für Server unter Last
+
+### 6.5 FS‑Modul (Async)
+Asynchron lesen/schreiben:
+- Callback‑basierte APIs oder Promise‑basierte Varianten
+- besser für performante Server
+
+### 6.6 Sync vs. Async (Kernidee)
+- **Sync:** einfach, aber blockiert
+- **Async:** etwas komplexer, aber skalierbar und serverfreundlich
+
+---
+
+## 7) HTTP in Node (ohne Express)
+
+### 7.1 HTTP Intro
+Node kann mit dem Core‑Modul `http` einen Webserver starten.
+
+### 7.2 HTTP Module Setup
+Grundprinzip:
+- Server erstellen
+- Request/Response verarbeiten
+- Port öffnen
+
+### 7.3 More Features
+- unterschiedliche Routen/URLs unterscheiden
+- Content‑Type setzen (HTML, JSON)
+- Statuscodes korrekt zurückgeben
+
+---
+
+## 8) NPM: Pakete & Abhängigkeiten
+
+### 8.1 NPM Info
+**NPM** ist der Paketmanager, um Libraries zu installieren und Scripts zu verwalten.
+
+### 8.2 Wichtige Commands
+- `npm init` / `npm init -y` → `package.json` erzeugen
+- `npm install paketname` → Dependency installieren
+- `npm install --save-dev paketname` → Dev‑Dependency
+- `npm uninstall paketname`
+
+### 8.3 Erstes Paket
+Typisch: ein kleines Utility installieren und verwenden.
+
+### 8.4 Code teilen
+Wichtig sind:
+- `package.json` (Projektdefinition)
+- `package-lock.json` (exakte Dependency‑Versionen)
+- `node_modules` wird **nicht** mitgepusht (Git), sondern per `npm install` erzeugt.
+
+### 8.5 Nodemon
+**Nodemon** startet Server automatisch neu, wenn du Dateien änderst.
+- nützlich für Entwicklung
+
+### 8.6 Global Install
+Manche Tools kann man global installieren:
+- `npm i -g nodemon`
+(oder im Projekt als dev‑dependency)
+
+---
+
+## 9) Wichtige Node‑Konzepte: Event Loop, Async Patterns, Events, Streams
+
+### 9.1 Event Loop (Warum Node „schnell“ wirkt)
+Node ist single‑threaded (für JS‑Code), kann aber viele I/O‑Operationen parallel koordinieren:
+- Der Event Loop „plant“ Callbacks und Promise‑Resolution, sobald I/O fertig ist.
+
+**Merksatz:**  
+Node blockiert idealerweise nicht auf I/O (Dateien, Netzwerk), sondern arbeitet ereignisgesteuert.
+
+### 9.2 Async Patterns
+Typische Entwicklung:
+1. Blocking Code erkennen (z. B. Sync‑FS in Server)
+2. Promises einführen
+3. Auf `async/await` refactoren
+4. Node‑eigene Alternativen nutzen (z. B. Promise‑FS APIs)
+
+### 9.3 Events & EventEmitter
+Node nutzt Events überall:
+- Streams feuern Events
+- HTTP‑Server arbeitet event‑basiert
+
+`EventEmitter` ist ein Kernkonzept:
+- Event registrieren (Listener)
+- Event auslösen (Emit)
+
+### 9.4 Streams
+Streams sind effizient für große Datenmengen:
+- statt komplette Datei in RAM zu laden: chunkweise verarbeiten
+- sehr wichtig für File‑Serving, Uploads, große Antworten
+
+Beispiele im Kurs:
+- Read Stream aus Datei
+- Stream + HTTP Response (z. B. Datei an Client streamen)
+
+---
+
+## 10) HTTP Request/Response Cycle (Web‑Grundlagen)
+
+### 10.1 Ablauf (vereinfacht)
+1. Client sendet Request (URL, Method, Headers)
+2. Server verarbeitet (Routing, Logik)
+3. Server sendet Response (Status, Headers, Body)
+
+### 10.2 HTTP Messages
+Du lernst:
+- Statuscodes (200, 404, 500, …)
+- Header (Content‑Type, Caching, …)
+- Body (HTML/JSON)
+
+---
+
+## 11) Starter Project & „Vanilla“ HTTP App
+
+Der Kurs nutzt ein Starterprojekt (Installation/Überblick), um HTTP‑Basics praktisch zu üben:
+- HTML Datei ausliefern
+- Request‑Objekt untersuchen
+- Header korrekt setzen
+- kleine App‑Beispiele als Brücke zu Express
+
+---
+
+## 12) Express.js Grundlagen
+
+### 12.1 Was ist Express?
+**Express** ist ein Minimal‑Framework über Node‑HTTP, das dir u. a. gibt:
+- Routing (lesbarer und weniger „if‑else“)
+- Middleware‑Konzept
+- Vereinfachte Response‑Helpers (`res.json`, `res.status`, …)
+
+### 12.2 Express Basics & App Example
+Typischer Ablauf:
+- `const express = require('express')`
+- `const app = express()`
+- `app.listen(PORT)`
+
+Dann:
+- Routen definieren: `app.get('/path', handler)`
+
+### 12.3 All Static
+Statische Files (HTML/CSS/JS/Images) ausliefern:
+- z. B. über `express.static(...)`
+
+### 12.4 API vs SSR
+- **API:** Server liefert JSON, Frontend rendert UI (SPA/React/…)
+- **SSR (Server Side Rendering):** Server rendert HTML und schickt fertige Seiten
+
+Der Kurs zeigt dir, wann welche Variante sinnvoll ist.
+
+---
+
+## 13) JSON Basics
+
+REST‑APIs sprechen meistens **JSON**:
+- Serialisierung: `JSON.stringify(...)`
+- Parsing: `JSON.parse(...)`
+In Express:
+- `res.json(data)` sendet JSON
+
+---
+
+## 14) Route Params & Query Strings
+
+### 14.1 Setup
+**Route Params**: Teil der URL ist variabel  
+Beispielidee: `/users/:id`
+
+**Query String**: Filter/Optionen hinter `?`  
+Beispielidee: `/products?search=shoe&limit=10`
+
+### 14.2 Typische Use Cases
+- `:id` → Ressource identifizieren
+- Query → Sortierung, Pagination, Filter
+
+---
+
+## 15) Middleware (das Herz von Express)
+
+### 15.1 Idee
+Middleware sind Funktionen, die zwischen Request und Response laufen:
+- Logging
+- Auth
+- Input‑Validierung
+- Fehlerbehandlung
+
+### 15.2 `app.use(...)`
+- global oder für bestimmte Pfade
+- Reihenfolge ist wichtig (top‑down)
+
+### 15.3 Multiple Middleware
+Mehrere Funktionen hintereinander:
+- aufteilen nach Verantwortlichkeit
+- wiederverwendbar machen
+
+---
+
+## 16) HTTP Methods: GET, POST, PUT, DELETE (CRUD)
+
+### 16.1 GET
+Daten abrufen (Read)
+
+### 16.2 POST
+Daten erstellen (Create)
+- Kurs zeigt POST mit Form‑Beispiel
+- und POST via JavaScript (Fetch/AJAX)
+
+### 16.3 PUT
+Daten komplett/teilweise aktualisieren (Update)
+
+### 16.4 DELETE
+Daten löschen (Delete)
+
+---
+
+## 17) Postman (API testen)
+
+Du lernst, wie man Requests testet:
+- Methoden wechseln (GET/POST/PUT/DELETE)
+- Body/Headers setzen
+- Responses prüfen (Status, JSON‑Struktur)
+
+---
+
+## 18) Express Router & Controller
+
+### 18.1 Router Setup
+Router helfen, Routen sauber zu strukturieren:
+- getrennte Dateien pro „Feature“ (z. B. `users`, `products`)
+- gemeinsame Prefixe (z. B. `/api/v1/...`)
+
+### 18.2 Controller
+Controller bündeln Logik:
+- Router enthält „nur“ URL‑Mapping
+- Controller enthält Business‑Logik (z. B. `getAllProducts`, `createUser`)
+
+**Ergebnis:** bessere Wartbarkeit und Skalierbarkeit.
+
+---
+
+## 19) Kurz‑Cheatsheet (Merksätze)
+
+- **Node** = JavaScript außerhalb des Browsers (Server/Tools).
+- **Module** helfen beim Strukturieren; Import führt Top‑Level‑Code aus.
+- **Core Modules** (OS/Path/FS/HTTP) sind „Bordmittel“.
+- **Async statt Sync** ist zentral für Server‑Performance.
+- **Event Loop** koordiniert I/O und Callbacks/Promises.
+- **Streams** sind effizient für große Datenmengen.
+- **Express** macht Routing und Middleware‑Handling deutlich einfacher.
+- **Params** = identifizieren, **Query** = filtern/sortieren/paginieren.
+- **Router + Controller** = saubere Architektur.
+
+---
+
+## Quellen (öffentliche Kursbeschreibung/Gliederung)
+
+- freeCodeCamp News: „Learn Node.js and Express with This Free 8-hour Back End Development Course“ (Themenliste)  
+- Class Central: „Node.js and Express.js – Full Course“ (Überblick/Syllabus)
+
 
